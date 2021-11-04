@@ -1,0 +1,67 @@
+1.	Write sql to find an error in delivery date given order and shipment records as follows:
+
+Order
+orderID
+warehouseID
+shipmentID
+orderDate
+expectedDeliveryDate
+destinationState
+
+Shipment
+Status ( not shipped | in transit | complete )
+shipmentID
+shippedDate
+deliveredDate
+
+Select * 
+From order o 
+join shipment s using(shipmentID)
+where o.expectedDeliveryDate <= s.deliveredDate
+and s.Status IN ("not shipped", "complete")
+
+2.	Give me a count of orders with shipments on both 10/1 and 10/2.
+
+select count(*) 
+from order o
+inner join shipment s
+where s.shippedDate BETWEEN "2021-10-01 00:00:00" AND "2021-10-02 23:59:59"
+group by orderid
+
+3.	How would you go about making updates to a very large dataset? 
+begin; 
+SQL
+SQL
+SQL
+SQLN 
+COMMIT
+
+
+4.	Given the following sample data:
+employee_id	date_worked	hours_worked	department
+1		1/1/2019	8		123
+2		1/1/2019	5		456
+3		1/10/2019	8		123
+3		1/15/2019	6		456
+
+1.	Give the average hours worked for 2019 by employee.
+
+select avg(hours_worked) 
+from employee
+where year(date_worked) = 2019
+group by employee_id
+
+6.	Give me the SQL to show the 3rd ranked employee by hours worked for January 2019.
+
+2.	Give the total hours worked for the month of December 2019 for each employee 
+that did not work the rest of the year.
+
+5.	Design a table to store history for employee department changes.
+create table emp_history (
+emp_hist_id id auto_increment primary key 
+emp_id id int
+department varchar()
+created_dt datetime
+updated_dt datetime
+)
+
